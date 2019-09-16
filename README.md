@@ -30,10 +30,9 @@ Start off by making a .env file:
 
           touch .env
    
-This file needs to have our database information in it in this following format:
+This file needs to have our database information in it in this following format (this project uses Postgres so if you haven't then you need to install it: https://www.postgresql.org/download/ - afterwards you may use pgadmin to create a new user and password and then proceed with the next steps).
 
           DATABASE_URL=postgres://[username]:[password]@localhost:[port]/[database_name]
-          
           
 Where   
          
@@ -49,8 +48,6 @@ You can edit the file manually or simply (example):
 
          echo DATABASE_URL=postgres://razmikh:samplepass@localhost:5432/postgres >> .env
 
-
-
 Once this is done now it is time to get our dependencies by running:
   
         npm install
@@ -59,9 +56,13 @@ To run the app, first make sure that the current environment is set to "developm
 
         set NODE_ENV=development
 
+The above the command is for Windows CMD, if you prefer PowerShell then use:
+
+        $Env:NODE_ENV += "development"
+        
 run:
 
-        npm run start
+        npm start
         
 ##### The app defaults to: 
 
