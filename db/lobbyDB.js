@@ -11,7 +11,7 @@ module.exports = (id, response) =>{
         let obj = JSON.parse(JSON.stringify(data[0]));
         let idleGames = JSON.parse(JSON.stringify(data[1]));
         let rejoinableGames = JSON.parse(JSON.stringify(data[2]));
-        response.render('index', {username: obj.username, idleGames: idleGames, rejoinableGames: rejoinableGames,layout: 'auth_layout.handlebars'});
+        response.render('index', {username: obj.username, idleGames: idleGames, rejoinableGames: rejoinableGames});
     }).catch(error => {
         console.log(error);
         response.render('index');
