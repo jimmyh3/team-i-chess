@@ -2,7 +2,8 @@
     position: relative;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 56px);
+    background-color: #343a40;
     /*padding-top: .5rem;*/
     /*overflow-x: hidden;*/
     /*overflow-y: scroll;*/ /* Scrollable contents if viewport is shorter than content. */
@@ -13,4 +14,8 @@
       position: -webkit-sticky;
       position: sticky;
     }
+}
+
+.chatbox {
+  height: 100%;
 }
