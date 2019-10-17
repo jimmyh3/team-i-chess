@@ -1,91 +1,65 @@
 <!-- MAIN CONTENT -->
-<div class="games-listing col">
-    <div class="row">
-        <div class="col col--margins">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a  class="nav-item nav-link active" 
-                        id="nav-open-games-tab" 
-                        data-toggle="tab" 
-                        href="#nav-open-games" 
-                        role="tab" 
-                        aria-controls="nav-open-games" 
-                        aria-selected="true"
-                    >Open Games</a>
-                    <a  class="nav-item nav-link" 
-                        id="nav-rejoin-games-tab" 
-                        data-toggle="tab" 
-                        href="#nav-rejoin-games" 
-                        role="tab" 
-                        aria-controls="nav-rejoin-games" 
-                        aria-selected="false"
-                    >Rejoin Games</a>
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" 
-                     id="nav-open-games" 
-                     role="tabpanel" 
-                     aria-labelledby="nav-open-games-tab"
-                >
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                {{#each rejoinableGames}}
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <p>Game #{{id}}</p>
-                                        </div>
-                                        <div class="card-body">
-
-                                        </div>
-                                        <div class="card-footer">
-                                            <form method="get" action="/games/{{id}}">
-                                                <div class="list">Game #{{id}}
-                                                    <input type="submit" class="btn btn-info" value="Rejoin"/>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" 
-                     id="nav-rejoin-games" 
-                     role="tabpanel" 
-                     aria-labelledby="nav-rejoin-games-tab"
-                >
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                {{#each idleGames}}
-                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <p>Game #{{id}}</p>
-                                        </div>
-                                        <div class="card-body">
-
-                                        </div>
-                                        <div class="card-footer">
-                                            <form method="get" action="/games/{{id}}">
-                                                <div class="list">Game #{{id}}
-                                                    <input type="submit" class="btn btn-primary" value="Join"/>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-                    </div>
+<div class="col game-listing-container">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a  class="nav-item nav-link active game-listing-nav-tabs" 
+                id="nav-open-games-tab" 
+                data-toggle="tab" 
+                href="#nav-open-games" 
+                role="tab" 
+                aria-controls="nav-open-games" 
+                aria-selected="true"
+            >Open Games</a>
+            <a  class="nav-item nav-link game-listing-nav-tabs" 
+                id="nav-rejoin-games-tab" 
+                data-toggle="tab" 
+                href="#nav-rejoin-games" 
+                role="tab" 
+                aria-controls="nav-rejoin-games" 
+                aria-selected="false"
+            >Rejoin Games</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" 
+                id="nav-open-games" 
+                role="tabpanel" 
+                aria-labelledby="nav-open-games-tab"
+        >
+            {{#each idleGames}}
+            <div class="game-listing-card">
+                <h1 class="game-listing-card__title">Game #{{id}}</h1>
+                <img class="game-listing-card__snapshot" src="https://via.placeholder.com/150">
+                <p class="game-listing-card__description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus hendrerit massa, eget aliquam libero interdum sit amet. Phasellus semper mauris sed sodales accumsan. Pellentesque nulla elit, blandit at lectus eu, tempus varius tortor.
+                </p>
+                <div class="game-listing-card__actions">
+                    <form method="get" action="/games/{{id}}">
+                        <input type="submit" class="btn btn-primary game-listing-card__action--input-width" value="Join"/>
+                    </form>
                 </div>
             </div>
+            {{/each}}
+        </div>
+        <div class="tab-pane fade" 
+                id="nav-rejoin-games" 
+                role="tabpanel" 
+                aria-labelledby="nav-rejoin-games-tab"
+        >
+            {{#each rejoinableGames}}
+            <div class="game-listing-card">
+                <h1 class="game-listing-card__title">Game #{{id}}</h1>
+                <img class="game-listing-card__snapshot" src="https://via.placeholder.com/150">
+                <p class="game-listing-card__description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus hendrerit massa, eget aliquam libero interdum sit amet. Phasellus semper mauris sed sodales accumsan. Pellentesque nulla elit, blandit at lectus eu, tempus varius tortor.
+                </p>
+                <div class="game-listing-card__actions">
+                    <form method="get" action="/games/{{id}}">
+                        <input type="submit" class="btn btn-primary game-listing-card__action--input-width" value="Join"/>
+                    </form>
+                </div>
+            </div>
+            {{/each}}
         </div>
     </div>
 </div>
@@ -121,4 +95,6 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="stylesheet" href="/stylesheets/chat.css"/>
+<link rel="stylesheet" href="/stylesheets/lobby.css"/>
+<link rel="stylesheet" href="/stylesheets/chessboard.css"/>
 <script src="/js/chatSocket.js"></script>
