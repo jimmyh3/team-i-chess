@@ -1,16 +1,16 @@
 <!-- MAIN CONTENT -->
 <div class="col game-listing-container">
     <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a  class="nav-item nav-link active game-listing-nav-tabs" 
+        <div class="nav nav-tabs game-listing-nav-tabs" id="nav-tab" role="tablist">
+            <a  class="nav-item nav-link active" 
                 id="nav-open-games-tab" 
                 data-toggle="tab" 
                 href="#nav-open-games" 
                 role="tab" 
                 aria-controls="nav-open-games" 
                 aria-selected="true"
-            >Open Games</a>
-            <a  class="nav-item nav-link game-listing-nav-tabs" 
+            ><span>Open Games</span></a>
+            <a  class="nav-item nav-link" 
                 id="nav-rejoin-games-tab" 
                 data-toggle="tab" 
                 href="#nav-rejoin-games" 
@@ -20,7 +20,7 @@
             >Rejoin Games</a>
         </div>
     </nav>
-    <div class="tab-content" id="nav-tabContent">
+    <div class="tab-content game-listing-panel" id="nav-tabContent">
         <div class="tab-pane fade show active" 
                 id="nav-open-games" 
                 role="tabpanel" 
@@ -59,6 +59,8 @@
                     </form>
                 </div>
             </div>
+            {{else}}
+            <div id="rejoinable-games-none"><h1>You have no available games to rejoin!</h1></div>
             {{/each}}
         </div>
     </div>

@@ -1,13 +1,33 @@
 .game-listing-container {
-    padding: 50px;
-    background-color: rgb(230, 230, 230);
+    padding: 0;
+    margin: 0;
+}
+
+.game-listing-container nav {
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: grey;
 }
 
 .game-listing-nav-tabs {
+    padding: 0;
+    margin: 0;
+}
+
+.game-listing-nav-tabs a {
     background-color: white;
-    border: 50px solid black;
-    border-radius: 5px;
+    min-width: fit-content;
+    width: 200px;
+    height: 66px;
+    padding: auto;
     font-weight: bold;
+    line-height: 50px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.game-listing-nav-tabs a:hover {
+    background-color: rgb(220, 220, 220);
 }
 
 .game-listing-card {
@@ -15,16 +35,15 @@
     width: 100%;
     min-width: 390px;
     max-width: 550px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    border: 5px solid black;
+    border: 2px solid black;
     border-radius: 5px;
-}
-
-.game-listing-card__title {
-
 }
 
 .game-listing-card__snapshot {
@@ -37,7 +56,6 @@
     width: 100%;
     min-width: 320px;
     max-width: 480px;
-    
 }
 
 .game-listing-card__description {
@@ -55,4 +73,11 @@
     font-weight: bold;
     height: 50px;
     width: 100%;
+}
+
+#rejoinable-games-none {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
