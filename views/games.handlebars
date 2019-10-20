@@ -55,7 +55,7 @@
                                             {{#chessboard_setupBorderAscii 97 1 7}}
                                             <td data-coordinate_x="{{this}}" data-coordinate_y="{{../this}}" class="{{chessboard_setupBlackOrWhiteClass 'chesscell-squareB' 'chesscell-squareW' this ../this }} chesscell">
                                                 {{#with (lookup @root.gamePieces (chessboard_appendTwoStr this ../this)) as |gamePiece|}}
-                                                    <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece h-100 w-100" src="images/{{gamePiece.faction}}{{gamePiece.name}}.png">
+                                                    <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece h-100 w-100" src="images/{{gamePiece.faction}}{{gamePiece.name}}.svg">
                                                 {{/with}}
                                             </td>
                                             {{/chessboard_setupBorderAscii}}
@@ -71,7 +71,7 @@
                                                 {{#chessboard_setupBorderAscii 97 1 7}}
                                                     <td data-coordinate_x="{{this}}" data-coordinate_y="{{../this}}" class="{{chessboard_setupBlackOrWhiteClass 'chesscell-squareB' 'chesscell-squareW' this ../this }} chesscell">
                                                         {{#with (lookup @root.gamePieces (chessboard_appendTwoStr this ../this)) as |gamePiece|}}
-                                                            <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece h-100 w-100" src="images/{{gamePiece.faction}}{{gamePiece.name}}.png">
+                                                            <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece h-100 w-100" src="images/{{gamePiece.faction}}{{gamePiece.name}}.svg">
                                                         {{/with}}
                                                     </td>
                                                 {{/chessboard_setupBorderAscii}}
@@ -219,7 +219,7 @@
                                     <div class="form-check form-check-inline pawn-upgrade-option">
                                         <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToQueen" value="queen" checked>
                                         <label class="form-check-label pawn-upgrade-option" for="pawnToQueen">
-                                            <img src="images/{{playerFaction}}queen.png">
+                                            <img src="images/{{playerFaction}}queen.svg">
                                             <p class="pl-3">Queen</p>
                                         </label>
                                     </div>
@@ -228,7 +228,7 @@
                                     <div class="form-check form-check-inline pawn-upgrade-option">
                                         <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToKnight" value="knight">
                                         <label class="form-check-label" for="pawnToKnight">
-                                            <img src="images/{{playerFaction}}knight.png">
+                                            <img src="images/{{playerFaction}}knight.svg">
                                             <p class="pl-3">Knight</p>
                                         </label>
                                     </div>
@@ -237,7 +237,7 @@
                                     <div class="form-check form-check-inline pawn-upgrade-option">
                                         <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToBishop" value="bishop">
                                         <label class="form-check-label" for="pawnToBishop">
-                                            <img src="images/{{playerFaction}}bishop.png">
+                                            <img src="images/{{playerFaction}}bishop.svg">
                                             <p class="pl-3">Bishop</p>
                                         </label>
                                     </div>
@@ -246,7 +246,7 @@
                                     <div class="form-check form-check-inline pawn-upgrade-option">
                                         <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToRook" value="rook">
                                         <label class="form-check-label pawn-upgrade-option" for="pawnToRook">
-                                            <img src="images/{{playerFaction}}rook.png" for="pawnToRook">
+                                            <img src="images/{{playerFaction}}rook.svg" for="pawnToRook">
                                             <p class="pl-3">Rook</p>
                                         </label>
                                     </div>

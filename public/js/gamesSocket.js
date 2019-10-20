@@ -38,7 +38,7 @@ $(document).ready(function(){
             if (updatedChessPiece.alive) {
                 const chessPieceElement =   `<img data-piece_id="${updatedChessPiece.pieceId}" data-piece_name="${updatedChessPiece.name}"
                                             data-piece_faction="${updatedChessPiece.faction}" class="chesspiece h-100 w-100" 
-                                            src="images/${updatedChessPiece.faction+updatedChessPiece.name}.png">`;
+                                            src="images/${updatedChessPiece.faction+updatedChessPiece.name}.svg">`;
 
 
                 $(`.chesscell[data-coordinate_x=${updatedChessPiece.raw_coordinate_x}][data-coordinate_y=${updatedChessPiece.raw_coordinate_y}]`).append(chessPieceElement);
