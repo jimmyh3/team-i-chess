@@ -1,267 +1,226 @@
-<div class="container-fluid">
-    <div class="row">
-        <!--
-        <div class="sidebar-sticky col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 d-none d-md-block bg-light" style="padding-top: 64px;">
-            <div class="card h-100">
-                <div class="card-header">
-                    <p>Game Room Chat</p>
-                </div>
-                <div class="card-body" style="overflow-y: scroll">
-                    <p id="hiddenName" hidden>{{playerName}}</p>
-                    <p id="hiddenFaction" hidden>{{playerFaction}}</p>
-                    <div>
-                        <div id="chatDisplay">
+<div class="col game-room-container">
 
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <form class="send-message" id="chatMessageForm" method="post" action="/message">
-                        <div class="input-group">
-                            <label for="message"></label>
-                            <input type="text" class="form-control" id="chatMessage"
-                                placeholder="enter message here..." name="chatMessage" autocomplete="off">
-                            <button type="submit" class="btn btn-primary" value="Send">Send</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        -->
-        <!-- MAIN CONTENT -->
-        <main role="main" style="padding-top: 64px;">
-            <!--<div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-6"></div>-->
-            <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
-                    <div class="card">
-                        <div class="card-body" style="width: 1100px">
-                            <table class="table table-dark table-bordered pb-1 border chessboard">
-                                <!--[ |A|B|C|D|...| ] -->
-                                <thead>
-                                    
-                                    <th scope="col">#</th>
-                                    {{#chessboard_setupBorderAscii 65 1 7}}
-                                        <th scope="col" class="chessborder">{{this}}</td>
-                                    {{/chessboard_setupBorderAscii}}
-                                    <th scope="col">#</th>
-                                    
-                                </thead>
-                                <tbody>
-                                    {{#if (isWhite playerFaction)}}
-                                    {{#chessboard_setupBorderAscii 56 -1 7}}
-                                        <tr>
-                                            <th scope="row" class="chessborder">{{this}}</td>
-                                            
-                                            {{#chessboard_setupBorderAscii 97 1 7}}
-                                            <td data-coordinate_x="{{this}}" data-coordinate_y="{{../this}}" class="{{chessboard_setupBlackOrWhiteClass 'chesscell-squareB' 'chesscell-squareW' this ../this }} chesscell">
-                                                {{#with (lookup @root.gamePieces (chessboard_appendTwoStr this ../this)) as |gamePiece|}}
-                                                    <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece h-100 w-100" src="images/{{gamePiece.faction}}{{gamePiece.name}}.svg">
-                                                {{/with}}
-                                            </td>
-                                            {{/chessboard_setupBorderAscii}}
-                                            
-                                            <td scope="row" class="chessborder">{{this}}</td>
-                                        </tr>
-                                    {{/chessboard_setupBorderAscii}}
-                                    {{else}}
-                                        {{#chessboard_setupBorderAscii 49 1 7}}
-                                            <tr>
-                                                <th scope="row" class="chessborder">{{this}}</td>
-
-                                                {{#chessboard_setupBorderAscii 97 1 7}}
-                                                    <td data-coordinate_x="{{this}}" data-coordinate_y="{{../this}}" class="{{chessboard_setupBlackOrWhiteClass 'chesscell-squareB' 'chesscell-squareW' this ../this }} chesscell">
-                                                        {{#with (lookup @root.gamePieces (chessboard_appendTwoStr this ../this)) as |gamePiece|}}
-                                                            <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece h-100 w-100" src="images/{{gamePiece.faction}}{{gamePiece.name}}.svg">
-                                                        {{/with}}
-                                                    </td>
-                                                {{/chessboard_setupBorderAscii}}
-
-                                                <td scope="row" class="chessborder">{{this}}</td>
-                                            </tr>
-                                        {{/chessboard_setupBorderAscii}}
-                                    {{/if}}
-                                </tbody>
-                                <tfoot>
-                                    <!--[ |A|B|C|D|...| ] -->
-                                    <th scope="col">#</th>
-                                    {{#chessboard_setupBorderAscii 65 1 7}}
-                                        <th scope="col" class="chessborder">{{this}}</td>
-                                    {{/chessboard_setupBorderAscii}}
-                                    <th scope="col">#</th>
-
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col">
-                            <form id="form-draw-request" method="POST" action="">
-                                <div class="input-group">
-                                            <button type="submit" class="btn btn-danger btn-md w-100" value="">Draw</button>
-                                </div>
-                            </form>
-                                </div>
-                                <div class="col">
-                            <form id="game-forfeit" method="POST" action="">
-                                <div class="input-group">
-                                            <button type="submit" class="btn btn-danger btn-md w-100" value="">Forfeit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-sm-12 col-md-11 col-lg-4 col-xl-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <p>Game Actions / Events</p>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="chessactions-card-body">
-                                <!-- Display game events here -->
-                            </div>
-                        </div>
-
-                        <div class="card-footer">
-                            <p>Footer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div id="chat" class="card border-dark text-center" style="position: fixed; bottom: 0px; right: 0px;">
-
-        <div class="card-header">
-            <div class="row">
-                <div class="col-9">
-                    <p class="offset-md-1">Chat</p>
-                </div>
-                <div class="col-1">
-                    <a class="btn btn-primary" data-toggle="collapse" href="#chatboxCollapse" role="button" aria-expanded="false" aria-controls="chatboxCollapse">
-                        <i class="fas fa-window-minimize"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div id="chatboxCollapse" class="collapse show">
-            <div class="card-body" style="height: 400px">
-                <!--<h5 class="card-title">Dark card title</h5>-->
-                <p id="hiddenName" hidden>{{playerName}}</p>
-                <p id="hiddenFaction" hidden>{{playerFaction}}</p>
-                <div>
-                    <div id="chatDisplay" class="card-text message text-left" style="height: 370px; overflow-y: scroll">
-                        <!-- Chat messages to display here.-->
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-footer">
-            <form class="send-message" id="chatMessageForm" method="post" action="/message">
-                <div class="input-group">
-                    <label for="message"></label>
-                    <input type="text" class="form-control" id="chatMessage"
-                        placeholder="enter message here..." name="chatMessage" autocomplete="off">
-                    <button type="submit" class="btn btn-primary" value="Send">Send</button>
+    <div class="row game-room-options">
+        <div class="col">
+            <form class="game-room-options--h-100" id="form-draw-request" method="POST" action="">
+                <div class="game-room-options--h-100 input-group">
+                    <button type="submit" class="game-room-options--h-100 btn btn-danger btn-md w-100" value="">Draw Request</button>
                 </div>
             </form>
         </div>
-
-    </div>
-
-    <div class="container">
-
-        <!--
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drawModal">
-            Open modal
-        </button>
-        -->
-
-        <div id="drawModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="drawModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="drawModalTitle">Opponent has requested a draw!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="btn-draw-accept" type="button" class="btn btn-primary">Accept</button>
-                        <button id="btn-draw-decline" type="button" class="btn btn-primary">Decline</button>
-                    </div>
+        <div class="col">
+            <form class="game-room-options--h-100" id="game-forfeit" method="POST" action="">
+                <div class="game-room-options--h-100 input-group">
+                    <button type="submit" class="game-room-options--h-100 btn btn-danger btn-md w-100 game-room-options--btn-size" value="">Forfeit</button>
                 </div>
-            </div>
-        </div>
-
-        <div id="gameModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gameModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="gameModalTitle">Pawn Upgrade Options</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div id="gameModalBody" class="modal-body">
-                        <form id="upgradePawnForm" method="POST" action="/move-piece">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check form-check-inline pawn-upgrade-option">
-                                        <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToQueen" value="queen" checked>
-                                        <label class="form-check-label pawn-upgrade-option" for="pawnToQueen">
-                                            <img src="images/{{playerFaction}}queen.svg">
-                                            <p class="pl-3">Queen</p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-check form-check-inline pawn-upgrade-option">
-                                        <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToKnight" value="knight">
-                                        <label class="form-check-label" for="pawnToKnight">
-                                            <img src="images/{{playerFaction}}knight.svg">
-                                            <p class="pl-3">Knight</p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-check form-check-inline pawn-upgrade-option">
-                                        <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToBishop" value="bishop">
-                                        <label class="form-check-label" for="pawnToBishop">
-                                            <img src="images/{{playerFaction}}bishop.svg">
-                                            <p class="pl-3">Bishop</p>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-check form-check-inline pawn-upgrade-option">
-                                        <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToRook" value="rook">
-                                        <label class="form-check-label pawn-upgrade-option" for="pawnToRook">
-                                            <img src="images/{{playerFaction}}rook.svg" for="pawnToRook">
-                                            <p class="pl-3">Rook</p>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="upgradePawnSubmitBtn" type="button" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+
+    <div class="game-room-chessboard-action-container">
+        <div class="row game-room-chessboard ">
+            <div class="col">
+                <table class="chessboard">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            {{#chessboard_setupBorderAscii 65 1 7}}
+                                <th scope="col" class="chessborder">{{this}}</th>
+                            {{/chessboard_setupBorderAscii}}
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if (isWhite playerFaction)}}
+                            {{#chessboard_setupBorderAscii 56 -1 7}}
+                                <tr class="chessrow">
+                                    <th scope="row" class="chessborder">{{this}}</td>
+                                    
+                                    {{#chessboard_setupBorderAscii 97 1 7}}
+                                    <td data-coordinate_x="{{this}}" data-coordinate_y="{{../this}}" class="{{chessboard_setupBlackOrWhiteClass 'chesscell-squareB' 'chesscell-squareW' this ../this }} chesscell">
+                                        {{#with (lookup @root.gamePieces (chessboard_appendTwoStr this ../this)) as |gamePiece|}}
+                                            <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece" src="images/{{gamePiece.faction}}{{gamePiece.name}}.svg">
+                                        {{/with}}
+                                    </td>
+                                    {{/chessboard_setupBorderAscii}}
+                                    
+                                    <td scope="row" class="chessborder">{{this}}</td>
+                                </tr>
+                            {{/chessboard_setupBorderAscii}}
+                        {{else}}
+                            {{#chessboard_setupBorderAscii 49 1 7}}
+                                <tr class="chessrow">
+                                    <th scope="row" class="chessborder">{{this}}</td>
+
+                                    {{#chessboard_setupBorderAscii 97 1 7}}
+                                        <td data-coordinate_x="{{this}}" data-coordinate_y="{{../this}}" class="{{chessboard_setupBlackOrWhiteClass 'chesscell-squareB' 'chesscell-squareW' this ../this }} chesscell">
+                                            {{#with (lookup @root.gamePieces (chessboard_appendTwoStr this ../this)) as |gamePiece|}}
+                                                <img data-piece_id="{{gamePiece.pieceId}}" data-piece_name="{{gamePiece.name}}" data-piece_faction="{{gamePiece.faction}}" class="chesspiece" src="images/{{gamePiece.faction}}{{gamePiece.name}}.svg">
+                                            {{/with}}
+                                        </td>
+                                    {{/chessboard_setupBorderAscii}}
+
+                                    <td scope="row" class="chessborder">{{this}}</td>
+                                </tr>
+                            {{/chessboard_setupBorderAscii}}
+                        {{/if}}
+                    </tbody>
+                    <tfoot>
+                        <!--[ |A|B|C|D|...| ] -->
+                        <th scope="col">#</th>
+                        {{#chessboard_setupBorderAscii 65 1 7}}
+                            <th scope="col" class="chessborder">{{this}}</th>
+                        {{/chessboard_setupBorderAscii}}
+                        <th scope="col">#</th>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     
+        <!--<div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-6"></div>-->
+        <div class="row game-room-actions-list">
+            <div class="col">
+                <div class="card game-room-actions-list--card-size">
+                    <div class="card-header">
+                        <p>Game Actions / Events</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="chessactions-card-body">
+                            <!-- Display game events here -->
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <p>Footer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#drawModal">
+    Open modal
+</button>
+-->
+<div id="drawModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="drawModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="drawModalTitle">Opponent has requested a draw!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-draw-accept" type="button" class="btn btn-primary">Accept</button>
+                <button id="btn-draw-decline" type="button" class="btn btn-primary">Decline</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="gameModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gameModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <h5 class="modal-title" id="gameModalTitle">Pawn Upgrade Options</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div id="gameModalBody" class="modal-body">
+                <form id="upgradePawnForm" method="POST" action="/move-piece">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check form-check-inline pawn-upgrade-option">
+                                <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToQueen" value="queen" checked>
+                                <label class="form-check-label pawn-upgrade-option" for="pawnToQueen">
+                                    <img src="images/{{playerFaction}}queen.svg">
+                                    <p class="pl-3">Queen</p>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-check form-check-inline pawn-upgrade-option">
+                                <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToKnight" value="knight">
+                                <label class="form-check-label" for="pawnToKnight">
+                                    <img src="images/{{playerFaction}}knight.svg">
+                                    <p class="pl-3">Knight</p>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-check form-check-inline pawn-upgrade-option">
+                                <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToBishop" value="bishop">
+                                <label class="form-check-label" for="pawnToBishop">
+                                    <img src="images/{{playerFaction}}bishop.svg">
+                                    <p class="pl-3">Bishop</p>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-check form-check-inline pawn-upgrade-option">
+                                <input class="form-check-input" type="radio" name="pawnUpgradeOptions" id="pawnToRook" value="rook">
+                                <label class="form-check-label pawn-upgrade-option" for="pawnToRook">
+                                    <img src="images/{{playerFaction}}rook.svg" for="pawnToRook">
+                                    <p class="pl-3">Rook</p>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="upgradePawnSubmitBtn" type="button" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chat" class="card border-dark text-center" style="position: fixed; bottom: 0px; right: 0px;">
+
+    <div class="card-header">
+        <div class="row">
+            <div class="col-9">
+                <p class="offset-md-1">Chat</p>
+            </div>
+            <div class="col-1">
+                <a class="btn btn-primary" data-toggle="collapse" href="#chatboxCollapse" role="button" aria-expanded="false" aria-controls="chatboxCollapse">
+                    <i class="fas fa-window-minimize"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="chatboxCollapse" class="collapse show">
+        <div class="card-body" style="height: 400px">
+            <!--<h5 class="card-title">Dark card title</h5>-->
+            <p id="hiddenName" hidden>{{playerName}}</p>
+            <p id="hiddenFaction" hidden>{{playerFaction}}</p>
+            <div>
+                <div id="chatDisplay" class="card-text message text-left" style="height: 370px; overflow-y: scroll">
+                    <!-- Chat messages to display here.-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <form class="send-message" id="chatMessageForm" method="post" action="/message">
+            <div class="input-group">
+                <label for="message"></label>
+                <input type="text" class="form-control" id="chatMessage"
+                    placeholder="enter message here..." name="chatMessage" autocomplete="off">
+                <button type="submit" class="btn btn-primary" value="Send">Send</button>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 
@@ -269,6 +228,8 @@
 <script src="/js/chatSocket.js"></script>
 <script src="/js/gamesSocket.js"></script>
 <link rel="stylesheet" href="/stylesheets/chat.css"/>
+<link rel="stylesheet" href="/stylesheets/chessboard.css"/>
+<link rel="stylesheet" href="/stylesheets/game_room.css"/>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 <script>

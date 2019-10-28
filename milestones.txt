@@ -1,4 +1,5 @@
 Begin date: 10/13/2019
-1. Remove the need for a auth_layout.handlebars and layout.handlebars
-2. Patch lobby UI such that the content fit within 100% of viewport without a scrollbar.
-3. Setup lobby UI with panel tabs for Available Games and Rejoinable Games.
+[x] Remove the need for a auth_layout.handlebars and layout.handlebars
+[x] Patch lobby UI such that the content fit within 100% of viewport without a scrollbar.
+[x] Setup lobby UI with panel tabs for Available Games and Rejoinable Games.
+[x] Patch up game room to be responsive (either by increments or aspect ratio resizing)
