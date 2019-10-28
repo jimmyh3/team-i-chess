@@ -60,21 +60,22 @@
         </nav>
     </header>
 
-    {{#if success_msg}}
-        <div class="alert alert-success">{{success_msg}}</div>
-    {{/if}}
-
-    {{#if error_msg}}
-        <div class="alert alert-danger">{{error_msg}}</div>
-    {{/if}}
-    {{#if error}}
-        <div class="alert alert-danger">{{error}}</div>
-    {{/if}}
-
     <main class="main">
         <div class="container-fluid container--height-100">
             <div class="row row--height-100">
-            {{{body}}}
+                <div style="width: 100%">
+                    {{#if success_msg}}
+                        <div class="alert alert-success" style="top: 25x;">{{success_msg}}</div>
+                    {{/if}}
+
+                    {{#if error_msg}}
+                        <div class="alert alert-danger" style="top: 25px;">{{error_msg}}</div>
+                    {{/if}}
+                    {{#if error}}
+                        <div class="alert alert-danger" style="top: 25px;">{{error}}</div>
+                    {{/if}}
+                </div>
+                {{{body}}}
             </div>
         </div>
     </main>

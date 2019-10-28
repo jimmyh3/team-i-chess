@@ -22,6 +22,8 @@
 .game-room-chessboard {
     height: 70%;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .game-room-actions-list {
